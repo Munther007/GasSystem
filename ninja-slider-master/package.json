@@ -1,0 +1,44 @@
+{
+  "name": "ninja-slider",
+  "version": "1.1.27",
+  "description": "Ninja Slider",
+  "homepage": "http://ninjaui.com/slider",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ninja/ninja-slider.git"
+  },
+  "bugs": {
+    "url": "http://github.com/ninja/ninja-slider/issues"
+  },
+  "engines": {
+    "node": "0.8",
+    "npm": "1.1"
+  },
+  "dependencies": {
+    "ninja": "1.1"
+  },
+  "scripts": {
+    "prepublish": "./node_modules/ninja/node_modules/grunt/bin/grunt",
+    "start": "./node_modules/ninja/node_modules/grunt/bin/grunt start",
+    "test": "./node_modules/ninja/node_modules/grunt/bin/grunt test"
+  },
+  "main": "library/ninja-slider",
+  "licenses": [
+    {
+      "type": "Apache License v2.0",
+      "url": "http://ninjaui.com/license.txt"
+    }
+  ],
+  "author": {
+    "name": "Jamie Hoover",
+    "email": "dont.tase@me.com",
+    "url": "http://uipoet.com"
+  },
+  "contributors": [
+    {
+      "name": "Faisal N. Jawdat",
+      "email": "faisal@faisal.com",
+      "url": "http://faisal.com"
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+.ninja-slider {
+  display: inline-block;
+  font-weight: bold;
+  min-width: 100px;
+  &.ninja-active * {
+    cursor: pointer;
+    cursor:-moz-grabbing;
+    cursor:-webkit-grabbing;
+    cursor: grabbing;
+  }
+  button,
+  .ninja-groove,
+  .ninja-level {
+    background-clip: padding-box;
+  }
+  button,
+  .ninja-track {
+    height: 16px;
+  }
+  button,
+  .ninja-groove {
+    left: 0;
+    position: absolute;
+    top: 0;
+  }
+  button,
+  .ninja-level {
+    background-image: linear-gradient(top, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 50%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.1) 100%);
+  }
+  button {
+    background-color: #eee;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px #000;
+    cursor: pointer;
+    cursor:-moz-grab;
+    cursor:-webkit-grab;
+    cursor: grab;
+    margin: 0;
+    padding: 0;
+    width: 16px;
+    &:active {
+      box-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    }
+  }
+  button:active,
+  .ninja-groove {
+    background-image: linear-gradient(top, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0) 50%, rgba(255,255,255,0) 50%, rgba(255,255,255,0.1) 100%);
+  }
+  .ninja-groove,
+  .ninja-level {
+    border-radius: 2px;
+    height: 4px;
+  }
+  .ninja-groove {
+    background-color: #999;
+    cursor: pointer;
+    left: 8px;
+    right: 8px;
+    top: 6px;
+  }
+  .ninja-level {
+    background-color: #06c;
+  }
+  .ninja-track {
+    position: relative;
+  }
+  .ninja-value {
+    font-weight: normal;
+  }
+}
