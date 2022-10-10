@@ -1,4 +1,4 @@
-<div wire:init="loadItems">
+<div wire:init="loadItems" xmlns:wire="http://www.w3.org/1999/xhtml" xmlns:livewire="">
 
     <div wire:loading class="w-full">
         <div class="flex justify-center items-center mt-32">
@@ -22,6 +22,24 @@
                                 <h3 class="text-lg font-semibold text-gray-700 dark:text-gray-300"> {{ __('user.users') }}</h3>
                             </div>
                             <div class="ml-4">
+                                <a href="/print-users">
+                                    <x-jet-button
+                                        class="text-white rounded-lg dark:text-gray-300 bg-primary-600 dark:bg-primary-700 hover:bg-primary-700 focus:border-primary-900 focus:ring-primary-300">
+                                        <x-svg.svg-plus class="w-5 h-5"/>
+                                        طباعة تقرير
+                                    </x-jet-button>
+                                </a>
+                            </div>
+                            <div class="ml-4">
+                                <a href="/users/export/">
+                                    <x-jet-button
+                                        class="text-white rounded-lg dark:text-gray-300 bg-primary-600 dark:bg-primary-700 hover:bg-primary-700 focus:border-primary-900 focus:ring-primary-300">
+                                        <x-svg.svg-plus class="w-5 h-5"/>
+                                        تصدير كملف
+                                    </x-jet-button>
+                                </a>
+                            </div>
+                            <div class="ml-4">
                                 @can('create' , \App\Models\User::class)
                                     <x-jet-button wire:click="selectedItem('create',null)"
                                                   class="text-white rounded-lg dark:text-gray-300 bg-primary-600 dark:bg-primary-700 hover:bg-primary-700 focus:border-primary-900 focus:ring-primary-300">
@@ -40,29 +58,9 @@
                                              autocomplete="off"/>
                             </div>
 
-                            <div class="col-span-3 md:col-span-2 lg:col-span-1">
-                                <x-jet-label class="text-xs" for="select"
-                                             value="{{ __('app.By') }} {{ __('role.role') }}"/>
-                                <x-select wire:model="role" wire:key="roleTerm" class="mt-1">
-                                    <option value="">{{ __('app.All') }} {{ __('role.roles') }}</option>
-                                    @forelse($roles as $key => $value)
-                                        <option value="{{ $key }}">{{ $value }}</option>
-                                    @empty
-                                    @endforelse
-                                </x-select>
-                            </div>
 
-                            <div class="col-span-3 md:col-span-2 lg:col-span-1">
-                                <x-jet-label class="text-xs" for="select"
-                                             value="{{ __('app.By') }} {{ __('country.country') }}"/>
-                                <x-select wire:model="country" wire:key="countryTerm" class="mt-1">
-                                    <option value="">{{ __('app.All') }} {{ __('country.countries') }}</option>
-                                    @forelse($countries as $key => $value)
-                                        <option value="{{ $key }}">{{ $value }}</option>
-                                    @empty
-                                    @endforelse
-                                </x-select>
-                            </div>
+
+
 
                             <div class="col-span-3 md:col-span-2 lg:col-span-1">
                                 <x-jet-label class="text-xs" for="select" value="{{ __('app.OrderBy') }}"/>
@@ -72,7 +70,7 @@
                                     <option value="username">{{ __('user.username') }}</option>
                                     <option value="email">{{ __('user.email') }}</option>
                                     <option value="role_id">{{ __('user.role') }}</option>
-                                    <option value="country_id">{{ __('user.country') }}</option>
+                                    <option value="city_id">{{ __('user.city') }}</option>
                                     @if($trashed)
                                         <option value="deleted_at">{{ __('app.deleted_at') }}</option>
                                     @else
@@ -114,14 +112,14 @@
                         <table class="w-full whitespace-no-wrap">
                             <thead>
                             <tr class="text-sm font-semibold text-gray-500 border-y ltr:text-left rtl:text-right dark:border-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-700/30">
-                                <th class="w-10 px-2 py-3 text-center">{{ __('app.id') }}</th>
+                                <th class="px-4 py-3 text-center">{{ __('app.id') }}</th>
                                 <th class="px-4 py-3">
                                     <span>{{ __('user.name') }}</span>
                                     <span class="text-xx">/ {{ __('user.username') }}</span>
                                 </th>
                                 <th class="px-2 py-3 text-center">{{ __('user.email') }}</th>
                                 <th class="px-2 py-3 text-center">{{ __('user.role') }}</th>
-                                <th class="px-2 py-3 text-center">{{ __('user.country') }}</th>
+                                <th class="px-2 py-3 text-center">{{ __('user.city') }}</th>
                                 <th class="px-2 py-3 text-center">{{ $trashed ? __('app.deleted_at') : __('app.created_at') }}</th>
                                 <th class="px-2 py-3 text-center">{{ __('app.actions') }}</th>
                             </tr>
@@ -129,7 +127,7 @@
                             <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-900">
                             @forelse($users as $user)
                                 <tr class="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-800 hover:dark:text-gray-200 hover:bg-gray-100 hover:dark:bg-gray-700">
-                                    <td class="px-2 py-3 text-center text-xx">
+                                    <td class="px-2 py-3 text-center font-semibold ">
                                         {{ $user->id }}
                                     </td>
                                     <td class="px-4 py-3">
@@ -165,10 +163,10 @@
                                         @endif
                                     </td>
                                     <td class="px-2 py-3 text-sm text-center">
-                                        @if($user->country)
-                                            {{ $user->country->name }}
-                                        @elseif($user->country_id)
-                                            <span class="line-through">{{ $user->country()->withTrashed()->first()->name }}</span>
+                                        @if($user->city)
+                                            {{ $user->city->name }}
+                                        @elseif($user->city_id)
+                                            <span class="line-through">{{ $user->city()->withTrashed()->first()->name }}</span>
                                         @endif
                                     </td>
                                     <td class="px-2 py-3 text-sm text-center">

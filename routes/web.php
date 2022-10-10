@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CarController;
+use App\Http\Controllers\PrintController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,9 +20,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//Route::get('/club' , function(){
-//    return view('club.home');
-//});
+Route::get('/print-users',[PrintController::class , 'index']);
+Route::get('/prnpriview',[PrintController::class , 'prnpriview']);
+Route::get('users/export/', [UserController::class, 'export']);
 
 Route::resource('users' ,UserController::class)->parameters([
     'users' => 'users.index'

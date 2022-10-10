@@ -20,7 +20,6 @@ class CarController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param $id
      * @return Factory|View
      */
     public function index()

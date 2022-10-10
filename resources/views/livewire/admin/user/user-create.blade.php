@@ -51,19 +51,6 @@
                     </div>
 
                     <div class="col-span-1 md:col-span-2">
-                        <x-jet-label class="text-xs" for="select" value="{{ __('country.country') }}"/>
-                        <x-select wire:model="countryId" wire:key="countryCreate" class="mt-1">
-                            <option value="" readonly="true" hidden="true"
-                                    selected>{{ __('country.select country') }}</option>
-                            @forelse($countries as $key => $value)
-                                <option value="{{ $key }}">{{ $value }}</option>
-                            @empty
-                            @endforelse
-                        </x-select>
-                        <x-jet-input-error for="countryId" class="mt-2"/>
-                    </div>
-
-                    <div class="col-span-1 md:col-span-2">
                         <x-jet-label class="text-xs" for="select" value="{{ __('city.city') }}"/>
                         <x-select wire:model="cityId" wire:key="cityCreate" class="mt-1">
                             <option value="" readonly="true" hidden="true"

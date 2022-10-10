@@ -20,7 +20,7 @@ class UserShow extends Component
         $this->item = User::with('country','city','role')->find($this->itemId);
 
     }
-    
+
     public function closeItemModel(){
         $this->showItemModel = false;
         $this->reset();

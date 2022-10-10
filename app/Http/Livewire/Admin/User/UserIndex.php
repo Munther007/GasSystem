@@ -30,7 +30,7 @@ class UserIndex extends Component
     }
 
     public function updatingTerm(){
-       $this->resetPage();
+        $this->resetPage();
     }
 
     public function updatingOrderBy(){
