@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CarRequest;
 use App\Models\Car;
+use App\Rules\Recaptcha;
 use App\Traits\UploadImageTrait;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -44,9 +45,16 @@ class CarController extends Controller
      *
      * @param Request $request
      * @return string
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function store(Request $request)
     {
+//        $this -> validate($request, [
+//            'g-recaptcha-response' =>
+//                ['required', new Recaptcha()]]);
+
+        // Recaptcha passed, do what ever you need
+
         $car = Car::create([
             'owner_name' => $request->owner_name ,
             'number_type' => $request->number_type ,

@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="../style.css">
     <link href='https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href=
+    "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://www.google.com/recaptcha/api.js"
+            async defer></script>
 </head>
 <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
 <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js'></script>
@@ -18,28 +22,31 @@
         <div class="row">
             <!-- side bar -->
             <div class="col-md-3 register-left">
-                <img src="logo.png" alt="" />
-                <h3>أهلا بك</h3>
+                <img src="{{asset('logo.png')}}" alt="" />
+                <br>
+                <br>
+                <h2>أهلا بك</h2>
+                <br>
                 <p>يرجى ملئ الاستمارة  </p>
-                <input type="submit" name="" value="تسجيل دخول" /><br />
+                {{-- <input type="submit" name="" value="تسجيل دخول" /><br /> --}}
             </div>
             <!-- whole form  -->
             <div class="col-md-9 register-right">
-                <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+                {{-- <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
                     <li class="nav-item">
                         <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">المواطن</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">الموظف</a>
                     </li>
-                </ul>
+                </ul> --}}
                 <div class="tab-content" id="myTabContent">
                     <!-- here is the first form -->
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        <h3 class="register-heading">استمارة المواطن</h3>
+                        <h1 class="register-heading">استمارة المواطن</h1>
                         <!-- <div class="row register-form"> -->
 
-                       <form class="row register-form"  action="{{route('cars.store')}}" method="post" enctype="multipart/form-data">
+                       <form class="row register-form"  action="{{route('cars.store')}}" method="post" enctype="multipart/form-data" dir="rtl">
                             @csrf
                             @method('POST')
                             <!-- here is the column one on the lift -->
@@ -115,7 +122,9 @@
 
                                     @enderror
                                 </div>
-
+                                <div class="btn_form">
+                                    <input type="submit" class="btnRegister4" value="عرض البيانات" />
+                                </div>
                             </div>
                             <!-- here is the second colunm on the right -->
                             <div class="col-md-6">
@@ -190,9 +199,17 @@
                                     </div>
                                     @enderror
                                 </div>
+                               <div class="form-group">
+                                   <script src="https://www.google.com/recaptcha/api.js"
+                                           async defer></script>
+                                   <div class="g-recaptcha" style="text-align: center;" id="feedback-recaptcha"
+                                        data-sitekey="{{ env('GOOGLE_RECAPTCHA_KEY') }}">
+                                   </div>
+                               </div>
 
-                                <button type="submit" class="btnRegister4">تسجيل</button>
-                                <input type="submit" class="btnRegister4" value="عرض" />
+                                <div class="btn_form">
+                                <input type="submit" class="btnRegister5" value="تسجيل البيانات" />
+                            </div>
                             </div>
                             </form>
                         </div>
@@ -201,13 +218,13 @@
                     <!-- ///////////////////end of the first form ////////////////////////////////////////////////////////////////////////////-->
 
                     <!-- the seconf form of the employee -->
-                    <div class="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                        <h3 class="register-heading">أدارة الموقع</h3>
+                    {{-- <div class="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab"> --}}
+                        {{-- <h3 class="register-heading">أدارة الموقع</h3> --}}
 
 
 
             <!-- here is the second form -->
-            <div class="row register-form">
+            {{-- <div class="row register-form">
                 <div class="col-md-6">
 
                     <div class="form-group">
@@ -235,11 +252,11 @@
 
                     <input type="submit" class="btnRegister" value="Register" />
                 </div>
-            </div>
+            </div> --}}
 
 
 
-                    </div>
+                    {{-- </div> --}}
 
 
 
