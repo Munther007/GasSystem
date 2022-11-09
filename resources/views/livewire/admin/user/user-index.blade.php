@@ -1,8 +1,8 @@
-<div wire:init="loadItems" xmlns:wire="http://www.w3.org/1999/xhtml" xmlns:livewire="">
 
+<div wire:init="loadItems" xmlns:wire="http://www.w3.org/1999/xhtml" xmlns:livewire="">
     <div wire:loading class="w-full">
         <div class="flex justify-center items-center mt-32">
-            <x-svg.svg-spinner class="w-24 h-24 fill-primary-700 dark:fill-primary-400"/>
+            <x-svg.svg-spinner class="w-24 h-24 fill-primary-700 dark:fill-primary-400"></x-svg.svg-spinner>
         </div>
     </div>
 
@@ -34,7 +34,7 @@
                                 <a href="/users/export/">
                                     <x-jet-button
                                         class="text-white rounded-lg dark:text-gray-300 bg-primary-600 dark:bg-primary-700 hover:bg-primary-700 focus:border-primary-900 focus:ring-primary-300">
-                                        <x-svg.svg-plus class="w-5 h-5"/>
+                                        <x-svg.svg-plus class="w-5 h-5"></x-svg.svg-plus>
                                         تصدير كملف
                                     </x-jet-button>
                                 </a>
@@ -43,7 +43,7 @@
                                 @can('create' , \App\Models\User::class)
                                     <x-jet-button wire:click="selectedItem('create',null)"
                                                   class="text-white rounded-lg dark:text-gray-300 bg-primary-600 dark:bg-primary-700 hover:bg-primary-700 focus:border-primary-900 focus:ring-primary-300">
-                                        <x-svg.svg-plus class="w-5 h-5"/>
+                                        <x-svg.svg-plus class="w-5 h-5"></x-svg.svg-plus>
                                         {{ __('app.create') }}   {{ __('user.user') }}
                                     </x-jet-button>
                                 @endcan

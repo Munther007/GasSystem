@@ -96,7 +96,7 @@ nav.close{
 nav .logo-name{
     display: flex;
     align-items: center;
-    margin: 0px 3rem;
+    margin: 20px 3rem;
 }
 nav .logo-image{
     display: flex;
@@ -256,7 +256,7 @@ nav.close ~ .dashboard{
     /* background-color: var(--panel-color); */
     transition: var(--tran-05);
     z-index: 10;
-   
+
 }
 nav.close ~ .dashboard .top{
     right: 73px;
@@ -304,7 +304,7 @@ nav.close ~ .dashboard .top{
 }
 .dashboard .dash-content{
     padding-top: 50px;
-    
+
 }
 .dash-content .title{
     display: flex;
@@ -349,7 +349,7 @@ nav.close ~ .dashboard .top{
     /* background-color: var(--box1-color); */
     /* background-color: #08BFD6; */
     background: -webkit-linear-gradient(left, #ffb9cf, #FF789A);
-    
+
     transition: var(--tran-05);
     /* box-shadow: 6px 5px 12px #aaaaaa; */
     box-shadow: 4px 4px 16px rgb(0 0 0 / 10%);
@@ -377,16 +377,16 @@ nav.close ~ .dashboard .top{
     /* background-color: var(--box2-color);
     background-color: #4425A7; */
     background: -webkit-linear-gradient(left, #D7ACFF, #BA83FF);
-    
 
-   
+
+
 }
 .boxes .box.box3{
     /* background-color: var(--box3-color); */
     /* background-color: #08BFD6; */
     background: -webkit-linear-gradient(left, #87E1BF, #5ECA9A);
-   
-    
+
+
 }
 .boxes .box.box4{
     /* background-color: var(--box3-color); */

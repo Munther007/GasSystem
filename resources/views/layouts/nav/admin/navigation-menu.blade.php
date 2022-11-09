@@ -6,7 +6,8 @@
                 <!-- Logo -->
                 <div class="flex items-center">
                     <a href="{{ route('admin.index') }}">
-                        <x-jet-application-mark class="block h-9 w-auto" />
+                        <img src="logo.png" alt="" style="height: 50px ; width: 50px;">
+{{--                        <x-jet-application-mark class="block h-9 w-auto" />--}}
                     </a>
                 </div>
                 <!-- Navigation Links -->

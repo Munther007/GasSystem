@@ -6,7 +6,10 @@
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
+        "ext-curl": "*",
         "arcanedev/log-viewer": "^9.0",
+        "barryvdh/laravel-dompdf": "^2.0",
+        "elibyy/tcpdf-laravel": "^9.1",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^9.2",
         "laravel/jetstream": "^2.6",
@@ -17,8 +20,7 @@
         "milon/barcode": "^9.0",
         "psr/simple-cache": "2.0",
         "spatie/laravel-activitylog": "^4.6",
-        "twbs/bootstrap": "5.2.0",
-      "ext-curl": "*"
+        "twbs/bootstrap": "5.2.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

@@ -2,17 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\CarsExport;
 use App\Http\Requests\CarRequest;
 use App\Models\Car;
+use App\Models\Coupon;
 use App\Rules\Recaptcha;
 use App\Traits\UploadImageTrait;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
+use Barryvdh\DomPDF;
+use Exception;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
+use Maatwebsite\Excel\Facades\Excel;
 use Milon\Barcode\DNS2D;
-
+use Elibyy\TCPDF\Facades\TCPDF;
 
 class CarController extends Controller
 {
@@ -25,8 +36,8 @@ class CarController extends Controller
      */
     public function index()
     {
-        $cars = Car::all();
-        return view('cars.allCars' , compact('cars'));
+        $cars = Car::paginate(10);
+        return view('cars.allCars', compact('cars'));
 
     }
 
@@ -45,7 +56,6 @@ class CarController extends Controller
      *
      * @param Request $request
      * @return string
-     * @throws \Illuminate\Validation\ValidationException
      */
     public function store(Request $request)
     {
@@ -55,27 +65,67 @@ class CarController extends Controller
 
         // Recaptcha passed, do what ever you need
 
+        $random_code = Str::random(10);
+
         $car = Car::create([
-            'owner_name' => $request->owner_name ,
-            'number_type' => $request->number_type ,
-            'car_number' => $request->car_number ,
+            'owner_name' => $request->owner_name,
+            'number_type' => $request->number_type,
+            'car_number' => $request->car_number,
             'car_letter' => $request->car_letter,
-            'government_name' => $request->government_name ,
-            'document_number' => $request->document_number ,
-            'mobile' => $request->mobile ,
-            'car_type' => $request->car_type ,
-            'family_number' => $request->family_number ,
-            'id_card_number' => $request->id_card_number ,
-            'resident_number' => $request->resident_number ,
+            'government_name' => $request->government_name,
+            'document_number' => $request->document_number,
+            'mobile' => $request->mobile,
+            'car_type' => $request->car_type,
+            'family_number' => $request->family_number,
+            'id_card_number' => $request->id_card_number,
+            'resident_number' => $request->resident_number,
             'document_front_photo' => $this->uploadImage1($request, 'imgs'),
-            'document_back_photo' => $this->uploadImage2($request, 'imgs') ,
-            'id_card_photo'=> $this->uploadImage3($request, 'imgs') ,
-            'car_photo' => $this->uploadImage4($request, 'imgs') ,
-            'resident_card_photo' => $this->uploadImage5($request, 'imgs')
+            'document_back_photo' => $this->uploadImage2($request, 'imgs'),
+            'id_card_photo' => $this->uploadImage3($request, 'imgs'),
+            'car_photo' => $this->uploadImage4($request, 'imgs'),
+            'resident_card_photo' => $this->uploadImage5($request, 'imgs'),
+            'random_code' => $random_code
         ]);
 
-        session()->flash('success', 'لقد تم اضافة معلوماتك الى النظام');
-        return view('cars/allCars');
+        Cookie::queue(Cookie::make('id', $car->id, 60));
+        $content = Cookie::has('id');
+        $content = $request->cookie('id');
+        $no = 1;
+        $pageId = $content + $no;
+//
+//
+//        $filename = 'info.pdf';
+//
+//        $view = \View::make('cars.info', $car);
+//        $html = $view->render();
+//
+//        $pdf = new TCPDF;
+//
+//        $pdf::SetTitle('Hello World');
+//        $pdf::AddPage();
+//        $pdf::writeHTML($html, true, false, true, false, '');
+//
+//        $pdf::Output(public_path($filename), 'F');
+
+
+//        return response()->download(public_path($filename));
+
+
+        return Redirect::to('cars/' . $pageId);
+//        ->download(public_path($filename));
+//        if (Car::create($request->all())) {
+//            $request->session()->flash('status', 'success');
+//            $request->session()->flash('status.content', $random_code);
+//        } else {
+//
+//        $request->session()->flash('status.content', 'Error!');
+//        }
+//        return redirect('/')->session()->flash('success', 'لقد تم اضافة معلوماتك الى النظام');
+//
+//        $car = Car::find($random_code);
+//        return view('cars/allCars' , compact('car'))->with('تم التسجيل بنجاح' , $random_code);
+//        return view('cars/allCars');
+
     }
 
     /**
@@ -87,19 +137,20 @@ class CarController extends Controller
     public function show($id)
     {
         $car = Car::find($id);
-
-        return view('cars.car' , ['car' => $car ]);
+        return view('cars.info', compact('car'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param Car $car
-     * @return Response
+     * @param $id
+     * @return Factory|View
      */
-    public function edit(Car $car)
+    public function show2($id)
     {
-        //
+        $car = Car::find($id);
+        return view('cars.showID', compact('car'));
     }
 
     /**
@@ -107,11 +158,39 @@ class CarController extends Controller
      *
      * @param Request $request
      * @param Car $car
-     * @return Response
+     * @return Factory|View
      */
     public function update(Request $request, Car $car)
     {
-        //
+        $scan = $request->scan2;
+        $car = Car::find($request);
+
+//        $acive_state = $car['active_state'];
+        $random_code = $car['$random_code'];
+
+        if ($scan == $random_code) {
+            $acive_state = true;
+
+            $car->active_state = true;
+            $car->save();
+
+            return \redirect('cars');
+        } else {
+            return view('$car.error');
+        }
+    }
+
+    public function getCookies()
+    {
+
+        if (Cookie::has('id')) {
+            $content = Cookie::get('id');
+            $no = 1;
+            $pageId = $content + $no;
+            echo $pageId;
+        } else {
+            echo 'no cookies';
+        }
     }
 
     /**
@@ -123,5 +202,124 @@ class CarController extends Controller
     public function destroy(Car $car)
     {
         //
+    }
+
+    public function export()
+    {
+        return Excel::download(new CarsExport(), 'carsInformations.xlsx');
+    }
+
+    public function export2()
+    {
+        return Excel::download(new CarsExport(), 'أستمارة المعلومات الخاصة بك.xlsx');
+    }
+
+    public function exportpdf()
+    {
+//        $filename = 'hello_world.pdf';
+//
+//        $data = [
+//            'title' => 'Hello world!'
+//        ];
+//
+//        $view = \View::make('pdf.sample', $data);
+//        $html = $view->render();
+//
+//        $pdf = new TCPDF;
+//
+//        $pdf::SetTitle('Hello World');
+//        $pdf::AddPage();
+//        $pdf::writeHTML($html, true, false, true, false, '');
+//
+//        $pdf::Output(public_path($filename), 'F');
+//
+//        return response()->download(public_path($filename));
+    }
+
+
+
+//    public function generatePDF()
+//    {
+//    }
+
+//        // This will convert url string to array with '/' declimiter
+//        $url = explode('/', url()->current()); // something like [..., '127.0.0.1:8000', 'pengajuan', '3']
+//        $id = end($url); // result is 3
+//
+//// Get Specific Submission detail with "where" function
+//        $car = Car::where('id', $id)->first();
+//
+//// Rest is just same
+//        $pdf = PDF::loadview('cars.info', ['car' => $car]);
+//        return $pdf->stream();
+
+//        if (Cookie::has('id')) {
+//            $id = Cookie::get('id');
+//
+//            $car = Car::find($id);
+//            $filename = 'hello_world.pdf';
+//            $data = [
+//                'title' => 'Hello world!'
+//            ];
+////            dd($id);
+//            $view = \View::make('pdf.sample', $data);
+//            $html = $view->render();
+//
+//            $pdf = new TCPDF;
+//
+//            $pdf::SetTitle('Hello World');
+//            $pdf::AddPage();
+//            $pdf::writeHTML($html, true, false, true, false, '');
+//
+//            $pdf::Output(public_path($filename), 'F');
+//
+//
+//            return response()->download(public_path($filename));
+
+//        } else {
+//            echo 'no cookies' ;
+//        }
+//
+//        if (Cookie::has('id')){
+//            $id = Cookie::get('id');
+//            $car = Car::find($id);
+//            $pdf = PDF::loadView('cars.info', compact('car'));
+//            return $pdf->download('الأستمارة الخاصة بك.pdf');
+//        } else {
+//            echo 'no cookies' ;
+//        }
+//        return Redirect::to('cars/' );
+//        $car = Car::find($random_code);
+//}
+
+    public function checkBarcode(Request $request)
+    {
+        $barcode = $request->barcode ;
+
+        //main statements
+//        $id = $barcode;
+//        $car = Car::find($id);
+
+
+//        return view('cars/showID' , compact('car'));
+
+//        $bar = DB::table('cars')->where('random')->value('
+//        $content = Cookie::has('id');
+//        $id = $request->cookie('id');
+
+//        $car = Car::find($id);
+//        return view('cars/showID' , compact('car'));
+
+
+//        if ($id = DB::table('cars')
+//            ->where('id', '=', $barcode)
+//            ->get()) {
+//            $car = Car::find($id);
+//            dd($car);
+//            return view('cars/showID' , compact('car'));
+//        }
+//        else {
+//            return view('scan');
+//        }
     }
 }

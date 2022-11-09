@@ -13,13 +13,9 @@ class UserController extends Controller
 {
     public function index() {
         $users = User::all();
-//        $user1 = DNS2D::getBarcodeHTML('4445645656', 'QRCODE');
         return view('users.index' , compact('users'));
     }
 
-    public function create () {
-
-    }
     public function export()
     {
         return Excel::download(new UsersExport, 'users.xlsx');

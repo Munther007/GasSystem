@@ -18,15 +18,23 @@
 <main>
     <div class="top">
         <!-- <i class="uil uil-bars sidebar-toggle"></i> -->
-
+        <div class="btn_top">
+            <a href="/cars/export">
+            <button class="btnRegister33">تصدير كملف</button>
+            </a>
+            <a href="/print-cars">
+            <button class="btnRegister33 btn_rigester">طباعة الملف</button>
+            </a>
+        </div>
         <div class="search-box">
-
             <input type="text" placeholder="أبحث هنا...">
             <i class="uil uil-search"></i>
         </div>
 
         <!--<img src="images/profile.jpg" alt="">-->
     </div>
+    <br>
+
     <h1 class="title_table">  معلومات البطاقات </h1>
     <table>
         <thead>
@@ -121,6 +129,14 @@
 
         </tbody>
     </table>
+    <br>
+    <div class="container">
+        <div class="row sm:justify-center">
+                <div class="col" style="text-align: center;">
+                    {{ $cars->links() }}
+                </div>
+        </div>
+    </div>
 
 </main>
 <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>

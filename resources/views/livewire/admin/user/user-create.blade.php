@@ -1,4 +1,4 @@
-<div>
+<div xmlns:wire="">
     <x-jet-dialog-modal wire:model="showCreateModel">
         <x-slot name="title">
             {{ __('app.create') }} {{ __('user.user') }}
@@ -10,7 +10,7 @@
                 <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
 
                     <div class="col-span-1 md:col-span-2 lg:col-span-4">
-                        <x-jet-label for="name" value="{{ __('user.name') }}"/>
+                        <x-jet-label for="name" value="{{ __('user.name') }}"></x-jet-label>
                         <x-jet-input wire:model.defer="name" id="name" type="text" class="mt-1 block w-full" />
                         <x-jet-input-error for="name" class="mt-2"/>
                     </div>
@@ -51,8 +51,21 @@
                     </div>
 
                     <div class="col-span-1 md:col-span-2">
-                        <x-jet-label class="text-xs" for="select" value="{{ __('city.city') }}"/>
-                        <x-select wire:model="cityId" wire:key="cityCreate" class="mt-1">
+                        <x-jet-label class="text-xs" for="select" value="{{ __('country.country') }}"/>
+                        <x-select wire:model="countryId" wire:key="countryCreate" class="mt-1">
+                            <option value="" readonly="true" hidden="true"
+                                    selected>{{ __('country.select country') }}</option>
+                            @forelse($countries as $key => $value)
+                                <option value="{{ $key }}">{{ $value }}</option>
+                            @empty
+                            @endforelse
+                        </x-select>
+                        <x-jet-input-error for="countryId" class="mt-2"/>
+                    </div>
+
+                    <div class="col-span-1 md:col-span-2">
+                        <x-jet-label class="text-xs" for="select" value="{{ __('city.city') }}"></x-jet-label>
+                        <x-select wire:model="cityId" wire:key="cityUpdate" class="mt-1">
                             <option value="" readonly="true" hidden="true"
                                     selected>{{ __('city.select city') }}</option>
                             @forelse($cities as $key => $value)
@@ -83,10 +96,10 @@
                     </div>
 
                     <div class="col-span-1 md:col-span-2">
-                        <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}"/>
+                        <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}"></x-jet-label>
                         <x-jet-input wire:model.defer="password_confirmation"
                                      class="block mt-1 w-full" type="password"
-                                     required autocomplete="new-password"/>
+                                     required autocomplete="new-password"></x-jet-input>
                     </div>
 
                 </div>

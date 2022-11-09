@@ -35,6 +35,7 @@ return new class extends Migration
             $table->text('notes')->nullable();
             $table->boolean('active_state')->default(false);
             $table->bigInteger('generate_code')->nullable();
+            $table->string('random_code')->unique();
             $table->timestamps();
         });
     }

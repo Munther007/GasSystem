@@ -1,0 +1,243 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Tajawal', sans-serif;
+}
+body{
+    min-height: 100vh;
+
+
+}
+#title {
+    font-size: 2rem;
+    margin-right: 40%;
+    margin-bottom: 2rem;
+    color: #42424c;
+}
+.container_info{
+    width: 70%;
+    margin: 0% auto;
+    background-color: #edebf1;
+    /* text-align: center; */
+    align-items: center;
+    border-radius: 12px;
+}
+.form_application{
+    margin: 0% 0%;
+    background-color: #edebf1;
+    width: 100%;
+    padding: 5%;
+    border-radius: 12px;
+
+}
+.label, .text_info {
+    font-size: 1.9rem;
+    color: #42424c;
+    margin-top: 10px;
+    font-family: 'Tajawal', sans-serif;
+}
+.text_info{
+    margin-right: 2rem;
+    display: inline-block !important;
+    margin-bottom: 1rem;
+}
+
+
+
+.home_intro{
+    background: url('https://astylers.com/oya/images/bg-intro.png'), #d6d1df;
+    background-repeat: no-repeat;
+    padding: 130px 0 150px !important;
+    background-size: 60%;
+    background-position: top right;
+}
+
+.slider_img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    /* min-height: 100vh; */
+  }
+  .content{
+    height: 400px;
+    width: 750px;
+    position: relative;
+  }
+  .content .images{
+    height: 100%;
+    width: 100%;
+  }
+  .content .images img{
+    height: 100%;
+    width: 100%;
+  }
+  .btm-slides{
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+  }
+  .btm-slides span{
+    height: 15px;
+    width: 50px;
+    border: 2px solid #6F50FF;
+    margin: 0 3px;
+    cursor: pointer;
+  }
+  .sliders{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 45px;
+    cursor: pointer;
+    border: 2px solid #6F50FF;
+    background: rgba(255,255,255,0.1);
+  }
+  .sliders:hover{
+    background: rgba(255,255,255,0.2);
+  }
+  .right{
+   left: 0;
+  }
+  .sliders span{
+    line-height: 41px;
+    font-size: 35px;
+    color: #6F50FF;
+  }
+
+
+
+  .container_table{
+    direction: rtl;
+    padding: 20px;
+    /* background-color: #e2ebea; */
+    /* background-color: #fff; */
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    color: #28333f;
+    font-size: 1.6rem;
+    font-family: 'Times New Roman', Times, serif;
+    /* text-align: center; */
+  }
+
+
+
+ #title_table {
+    text-align: center;
+    color: #262d35;
+  }
+
+  table {
+    display: block;
+    border-collapse: collapse;
+  }
+
+  tr, td, tbody, tfoot {
+    display: block;
+  }
+
+  thead {
+    display: none;
+  }
+
+  tr {
+    padding-bottom: 10px;
+  }
+
+  td {
+    padding: 10px 10px 0;
+    text-align: right;
+  }
+  td:before {
+    /* content: attr(data-title); */
+    color: #0c0d0e;
+    /* text-transform: uppercase; */
+    font-size: 1.4rem;
+    /* padding-right: 10px; */
+    /* display: block; */
+  }
+
+  table {
+    width: 100%;
+
+  }
+
+  th {
+    text-align: right;
+    font-weight: 700;
+  }
+
+  thead th {
+    background-color: #6F50FF;
+    color: #fff;
+    /* border: 1px solid #202932; */
+    border: 1px solid #ddd;
+  }
+
+
+  @media (min-width: 460px) {
+    td {
+      /* text-align: left; */
+      text-align: right;
+    }
+    td:before {
+      display: inline-block;
+      text-align: right;
+      width: 140px;
+    }
+
+
+  }
+  @media (min-width: 720px) {
+    table {
+      display: table;
+    }
+
+    tr {
+      display: table-row;
+    }
+
+    td, th {
+      display: table-cell;
+    }
+
+    tbody {
+      display: table-row-group;
+    }
+
+    thead {
+      display: table-header-group;
+    }
+
+
+
+    td {
+      /* border: 1px solid #28333f; */
+      /* border-bottom: 1px solid #28333f; */
+      border: 1px solid #ddd;
+    }
+    td:before {
+      display: none;
+    }
+
+    td, th {
+      padding: 10px;
+    }
+
+    tr:nth-child(2n+2) td {
+      /* background-color: #d6b52e; */
+    }
+
+    button {
+        background-color: darkgreen;
+        height: 40px;
+        width: 70px;
+        font-size: 20px;
+        color: white;
+    }
+  }

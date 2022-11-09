@@ -7,7 +7,7 @@
 
                 <div class="shrink-0 flex items-center">
 
-                    <img src="{{URL::asset('./logo.png')}}" alt="profile Pic" height="40" width="40">
+                    <img src="{{URL::asset('logo.png')}}" alt="profile Pic" height="40" width="40">
                     <a style="padding : 0 20px 0 20px;" href=""></a>
                     <br>
                     <a href="{{ route('dashboard') }}">

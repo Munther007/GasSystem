@@ -22,6 +22,7 @@
         integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
         crossorigin="anonymous"></script>
     <script type="text/javascript" src="../../../../js/jquery.printPage.js"></script>
+
 </head>
 <body dir="rtl">
 <div class="container">

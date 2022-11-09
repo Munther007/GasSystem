@@ -46,7 +46,7 @@
                 'bottom-0 left-1/2 transform -translate-x-1/2 -translate-y-0': position == 'bottom-center',
                 'top-1/2 left-0 transform -translate-x-0 -translate-y-1/2': position == 'left-center',
                 'top-1/2 right-0 transform -translate-x-0 -translate-y-1/2': position == 'right-center',
-                }">
+                }" xmlns:x-transition="http://www.w3.org/1999/xhtml">
     <template x-for="(toast, index) in $store.toasts.list" :key="toast.id">
         <div x-show="toast.visible" x-transition:enter="transition ease-in duration-200"
              x-transition:enter-start="transform opacity-0 translate-y-2" x-transition:enter-end="transform opacity-100"
