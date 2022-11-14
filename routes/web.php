@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Route::get('/print-users',[PrintController::class , 'index']);
@@ -39,8 +39,11 @@ Route::post('/scan' , [CarController::class , 'checkBarcode'])->name('check');
 
 Route::get('/getcookies' , [CarController::class , 'getCookies']);
 
-Route::get('cars/{id}/edit' , [CarController::class , 'show2'])->name('show2');
-Route::post('cars/{id}/edit' , [CarController::class , 'update'])->name('cars.update');
+Route::middleware(['auth'])->prefix('cars')->as('user.')->group(function () {
+    Route::get('cars/{id}/edit' , [CarController::class , 'show2'])->name('show2');
+    Route::post('cars/{id}/edit' , [CarController::class , 'update'])->name('cars.update');
+});
+
 
 Route::get('cars/create' , [CarController::class , 'create'])->name('cars.create');
 Route::get('cars/{id}' , [CarController::class , 'show'])->name('cars.show');

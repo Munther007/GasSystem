@@ -84,7 +84,7 @@ nav{
     height: 100%;
     width: 250px;
     padding: 10px 14px;
-    background-color: var(--panel-color2);
+    background-color: #337ab7;
     /* background-color: #6F50FF; */
     border-left: 1px solid var(--border-color);
     transition: var(--tran-05);
@@ -376,7 +376,7 @@ nav.close ~ .dashboard .top{
 .boxes .box.box2{
     /* background-color: var(--box2-color);
     background-color: #4425A7; */
-    background: -webkit-linear-gradient(left, #D7ACFF, #BA83FF);
+    background: -webkit-linear-gradient(left, #3379b728, #337ab7);
 
 
 
@@ -391,7 +391,7 @@ nav.close ~ .dashboard .top{
 .boxes .box.box4{
     /* background-color: var(--box3-color); */
     /* background-color: #4425A7; */
-    background:-webkit-linear-gradient(left, #E6DE65, #E4C949);
+    background:-webkit-linear-gradient(left, #337ab7, #3379b728);
 }
 .dash-content .activity .activity-data{
     display: flex;

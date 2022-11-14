@@ -41,6 +41,14 @@
                     <i class="fas fa-user-cog"></i>
                     <span class="link-name">الصلاحيات</span>
                 </a></li>
+            <li><a href="#">
+                <i class="uil uil-comments"></i>
+                <span class="link-name">سجل النشاطات</span>
+            </a></li>
+{{--            <li><a href="#">--}}
+{{--                <i class="uil uil-share"></i>--}}
+{{--                <span class="link-name">Share</span>--}}
+{{--            </a></li>--}}
             <li><a href="{{route('cars.index')}}">
                     <i class="uil uil-chart"></i>
                     <span class="link-name">جميع البطاقات</span>
@@ -55,20 +63,23 @@
                     <span class="link-name">تفعيل بطاقة جديدة</span>
                 </a>
             </li>
-            <!-- <li><a href="#">
-                <i class="uil uil-comments"></i>
-                <span class="link-name">Comment</span>
-            </a></li>
-            <li><a href="#">
-                <i class="uil uil-share"></i>
-                <span class="link-name">Share</span>
-            </a></li> -->
         </ul>
 
         <ul class="logout-mode">
             <li><a href="#">
                     <i class="uil uil-signout"></i>
-                    <span class="link-name">تسجيل خروج</span>
+                    <span class="link-name">
+                        <!-- Authentication -->
+                         <form class="link-name" method="POST" action="{{ route('logout') }}">
+                          @csrf
+                           <x-jet-dropdown-link
+                               href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                               this.closest('form').submit();" role="button">
+                            تسجيل خروج
+                            </x-jet-dropdown-link>
+                           </form>
+                        </span>
                 </a></li>
 
             <li class="mode">

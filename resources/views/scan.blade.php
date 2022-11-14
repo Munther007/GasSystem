@@ -113,10 +113,11 @@
     <form action="{{route('check')}}" method="post" style="text-align: center;">
         @csrf
         @method('POST')
-        <input type="password" name="barcode" value="" id="last-barcode">
-        <button type="submit" id="scanner_add">
+        <input type="text" name="barcode" value="" id="last-barcode">
+
+            <button type="submit" id="scanner_add">
                 مطابقة المعلومات
-        </button>
+            </button>
     </form>
 {{--    <div id="last-barcode"></div>--}}
 </div>

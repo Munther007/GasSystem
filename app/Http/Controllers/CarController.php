@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Exports\CarsExport;
 use App\Http\Requests\CarRequest;
 use App\Models\Car;
-use App\Models\Coupon;
 use App\Rules\Recaptcha;
 use App\Traits\UploadImageTrait;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
@@ -24,6 +23,7 @@ use Illuminate\Validation\ValidationException;
 use Maatwebsite\Excel\Facades\Excel;
 use Milon\Barcode\DNS2D;
 use Elibyy\TCPDF\Facades\TCPDF;
+use function Symfony\Component\HttpFoundation\Session\Storage\Handler\getSelectSql;
 
 class CarController extends Controller
 {
@@ -59,11 +59,11 @@ class CarController extends Controller
      */
     public function store(Request $request)
     {
-//        $this -> validate($request, [
-//            'g-recaptcha-response' =>
-//                ['required', new Recaptcha()]]);
+        $this -> validate($request, [
+            'g-recaptcha-response' =>
+                ['required', new Recaptcha()]]);
 
-        // Recaptcha passed, do what ever you need
+//         Recaptcha passed, do what ever you need
 
         $random_code = Str::random(10);
 
@@ -92,40 +92,8 @@ class CarController extends Controller
         $content = $request->cookie('id');
         $no = 1;
         $pageId = $content + $no;
-//
-//
-//        $filename = 'info.pdf';
-//
-//        $view = \View::make('cars.info', $car);
-//        $html = $view->render();
-//
-//        $pdf = new TCPDF;
-//
-//        $pdf::SetTitle('Hello World');
-//        $pdf::AddPage();
-//        $pdf::writeHTML($html, true, false, true, false, '');
-//
-//        $pdf::Output(public_path($filename), 'F');
-
-
-//        return response()->download(public_path($filename));
-
 
         return Redirect::to('cars/' . $pageId);
-//        ->download(public_path($filename));
-//        if (Car::create($request->all())) {
-//            $request->session()->flash('status', 'success');
-//            $request->session()->flash('status.content', $random_code);
-//        } else {
-//
-//        $request->session()->flash('status.content', 'Error!');
-//        }
-//        return redirect('/')->session()->flash('success', 'لقد تم اضافة معلوماتك الى النظام');
-//
-//        $car = Car::find($random_code);
-//        return view('cars/allCars' , compact('car'))->with('تم التسجيل بنجاح' , $random_code);
-//        return view('cars/allCars');
-
     }
 
     /**
@@ -191,6 +159,23 @@ class CarController extends Controller
         } else {
             echo 'no cookies';
         }
+    }
+
+    public function checkBarcode(Request $request)
+    {
+
+
+//        //main statements
+//        $random_code = $barcode;
+//        $car = Car::find($random_code);
+//        $id = DB::select('select random_code from cars where random_code = ?' , [$barcode]);
+
+        $barcode = $request->barcode ;
+        $array = DB::select('select id from cars where random_code = ?' , [$barcode]);
+       $id = $array[0]->id;
+        $car = Car::find($id);
+
+        return view('cars/showID' , compact('car'));
     }
 
     /**
@@ -292,34 +277,10 @@ class CarController extends Controller
 //        $car = Car::find($random_code);
 //}
 
-    public function checkBarcode(Request $request)
-    {
-        $barcode = $request->barcode ;
+    /**
+     * @param $request
+     * @param $random_code
+     * @return Factory|View
+     */
 
-        //main statements
-//        $id = $barcode;
-//        $car = Car::find($id);
-
-
-//        return view('cars/showID' , compact('car'));
-
-//        $bar = DB::table('cars')->where('random')->value('
-//        $content = Cookie::has('id');
-//        $id = $request->cookie('id');
-
-//        $car = Car::find($id);
-//        return view('cars/showID' , compact('car'));
-
-
-//        if ($id = DB::table('cars')
-//            ->where('id', '=', $barcode)
-//            ->get()) {
-//            $car = Car::find($id);
-//            dd($car);
-//            return view('cars/showID' , compact('car'));
-//        }
-//        else {
-//            return view('scan');
-//        }
-    }
 }

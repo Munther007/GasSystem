@@ -20,7 +20,8 @@
         "milon/barcode": "^9.0",
         "psr/simple-cache": "2.0",
         "spatie/laravel-activitylog": "^4.6",
-        "twbs/bootstrap": "5.2.0"
+        "twbs/bootstrap": "5.2.0",
+      "ext-json": "*"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

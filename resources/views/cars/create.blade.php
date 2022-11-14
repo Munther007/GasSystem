@@ -22,12 +22,16 @@
     <div class="row">
         <!-- side bar -->
         <div class="col-md-3 register-left">
+            <br>
             <img src="{{asset('logo.png')}}" alt="" />
             <br>
             <br>
-            <h2>أهلا بك</h2>
             <br>
-            <p>يرجى ملئ الاستمارة  </p>
+            <h3>أهلا بك</h3>
+            <br>
+            <p>يرجى ملئ الاستمارة بعناية <br>
+            والتأكد من ملئها بدقة
+                <br>قبل الضغط على زر تسجيل البيانات</p>
             {{-- <input type="submit" name="" value="تسجيل دخول" /><br /> --}}
         </div>
         <!-- whole form  -->
