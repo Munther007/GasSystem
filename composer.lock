@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e349174db4a153f311e533d346e57f8e",
+    "content-hash": "e27e6c3bd1be4b23e7ce2620708cfae8",
     "packages": [
         {
             "name": "arcanedev/log-viewer",
@@ -4560,16 +4560,16 @@
         },
         {
             "name": "spatie/laravel-activitylog",
-            "version": "4.6.0",
+            "version": "4.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-activitylog.git",
-                "reference": "7c08e6bd8fbd1cd2b57c0f6acf3708bcafc3f7e1"
+                "reference": "3619d823069333018dd94aa36ef900b88497210d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-activitylog/zipball/7c08e6bd8fbd1cd2b57c0f6acf3708bcafc3f7e1",
-                "reference": "7c08e6bd8fbd1cd2b57c0f6acf3708bcafc3f7e1",
+                "url": "https://api.github.com/repos/spatie/laravel-activitylog/zipball/3619d823069333018dd94aa36ef900b88497210d",
+                "reference": "3619d823069333018dd94aa36ef900b88497210d",
                 "shasum": ""
             },
             "require": {
@@ -4635,7 +4635,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-activitylog/issues",
-                "source": "https://github.com/spatie/laravel-activitylog/tree/4.6.0"
+                "source": "https://github.com/spatie/laravel-activitylog/tree/4.7.1"
             },
             "funding": [
                 {
@@ -4647,7 +4647,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-09-22T09:31:29+00:00"
+            "time": "2022-11-11T15:38:25+00:00"
         },
         {
             "name": "spatie/laravel-package-tools",

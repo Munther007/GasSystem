@@ -15,6 +15,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
@@ -182,11 +183,18 @@ class CarController extends Controller
      * Remove the specified resource from storage.
      *
      * @param Car $car
-     * @return Response
+     * @return RedirectResponse|Redirector
      */
-    public function destroy(Car $car)
+    public function destroy($id)
     {
-        //
+        try {
+            $cars= Car::all();
+            $car = Car::findOrFail($id);
+            $car->delete();
+            return redirect()->route('scan')->with('delete' , 'تم حذف معلومات الكتاب بنجاح');
+        } catch (\Exception $e) {
+            return redirect()->route('scan')->withErrors(['error' =>$e->getMessage()]);
+        }
     }
 
     public function export()

@@ -48,7 +48,7 @@ body{
 
 
 .home_intro{
-    background: url('https://astylers.com/oya/images/bg-intro.png'), #d6d1df;
+    background-image: url('../images/bg.png');
     background-repeat: no-repeat;
     padding: 130px 0 150px !important;
     background-size: 60%;
@@ -85,7 +85,7 @@ body{
   .btm-slides span{
     height: 15px;
     width: 50px;
-    border: 2px solid #6F50FF;
+    border: 2px solid #337ab7;
     margin: 0 3px;
     cursor: pointer;
   }
@@ -95,7 +95,7 @@ body{
     transform: translateY(-50%);
     width: 45px;
     cursor: pointer;
-    border: 2px solid #6F50FF;
+    border: 2px solid #337ab7;
     background: rgba(255,255,255,0.1);
   }
   .sliders:hover{
@@ -107,7 +107,7 @@ body{
   .sliders span{
     line-height: 41px;
     font-size: 35px;
-    color: #6F50FF;
+    color: #337ab7;
   }
 
 
@@ -173,7 +173,7 @@ body{
   }
 
   thead th {
-    background-color: #6F50FF;
+    background-color: #337ab7;
     color: #fff;
     /* border: 1px solid #202932; */
     border: 1px solid #ddd;
@@ -234,7 +234,7 @@ body{
     }
 
     button {
-        background-color: darkgreen;
+        background-color: #337ab7;
         height: 40px;
         width: 70px;
         font-size: 20px;

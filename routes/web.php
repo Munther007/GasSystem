@@ -33,15 +33,19 @@ Route::get('cars/export/', [CarController::class, 'export']);
 //Route::get('/generate-pdf', [CarController::class, 'generatePDF']);
 //Route::get('/generate-pdf', [CarController::class, 'exportpdf']);
 
+
+
+Route::get('/getcookies' , [CarController::class , 'getCookies']);
 Route::get('/scan', function () {
     return view('scan');})->name('scan');
 Route::post('/scan' , [CarController::class , 'checkBarcode'])->name('check');
+Route::get('cars/{id}/edit' , [CarController::class , 'show2'])->name('show2');
 
-Route::get('/getcookies' , [CarController::class , 'getCookies']);
-
-Route::middleware(['auth'])->prefix('cars')->as('user.')->group(function () {
+Route::middleware(['auth'])->prefix('cars')->group(function () {
     Route::get('cars/{id}/edit' , [CarController::class , 'show2'])->name('show2');
     Route::post('cars/{id}/edit' , [CarController::class , 'update'])->name('cars.update');
+
+    Route::delete('/cars/{id}/edit' , [CarController::class , 'destroy'])->name('cars.destroy');
 });
 
 
@@ -53,6 +57,7 @@ Route::resource('/cars', CarController::class)->parameters([
     'cars.create' => 'create' ,
     'cars.store' => 'cars.store' ,
     'cars.show' => 'cars.show' ,
+    'cars.destroy' => 'cars.destroy'
 ]);
 
 Route::resource('users' ,UserController::class)->parameters([

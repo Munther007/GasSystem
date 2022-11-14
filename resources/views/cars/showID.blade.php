@@ -13,7 +13,7 @@
 </head>
 
 <body dir="rtl">
-    <div class="home_intro">
+    <div class="home_intro" >
         <div class="container_info">
         <div class="form_application">
                         <h2 id="title">بيـــانات المــواطن</h2>
@@ -128,15 +128,26 @@
                     </div>
                 </div>
 
-                <div>
-                    <br><br>
-                    <form action="" method="post" style="text-align: center;">
-                        @csrf
-                        @method('POST')
-                        <button class="btn-success" type="submit">تفعيل</button>
-                    </form>
+                <div class="row">
 
-            </div>
+                    <div class="col">
+                        <form action="" method="post" style="text-align: center;">
+                            @csrf
+                            @method('POST')
+                            <button class="btn-success" type="submit">تفعيل</button>
+                        </form>
+                    </div>
+                    <div class="col">
+                        <form method="post" action="{{route('cars.destroy' , $car->id)}}" >
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn-danger" type="submit">حذف</button>
+                        </form>
+                    </div>
+
+
+
+                </div>
 
         </div>
         </div>
@@ -158,7 +169,7 @@
         img[i].style.display = "none";
       }
       for(i = 0; i < slider.length; i++){
-        slider[i].style.background = "#6F50FF";
+        slider[i].style.background = "#337ab7";
       }
       img[indexValue-1].style.display = "block";
       slider[indexValue-1].style.background = "#edebf1";
