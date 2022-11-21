@@ -140,7 +140,8 @@
                     <div class="col">
                         <form method="post" action="{{route('cars.destroy' , $car->id)}}" >
                             @csrf
-                            @method('DELETE')
+{{--                            @method('DELETE')--}}
+                            {{method_field('delete')}}
                             <button class="btn-danger" type="submit">حذف</button>
                         </form>
                     </div>

@@ -12,10 +12,10 @@
     "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://www.google.com/recaptcha/api.js"
             async defer></script>
+    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js'></script>
+    <script type='text/javascript' src='https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js'></script>
 </head>
-<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-<script type='text/javascript' src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js'></script>
-<script type='text/javascript' src='https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js'></script>
 
 <body class='snippet-body'>
 <div class="container register">
@@ -218,16 +218,16 @@
                                 </div>
                                 @enderror
                             </div>
-                            <div class="form-group">
-                                <script src="https://www.google.com/recaptcha/api.js"
-                                        async defer></script>
-                                <div class="g-recaptcha" style="text-align: center;" id="feedback-recaptcha"
-                                     data-sitekey="{{ env('GOOGLE_RECAPTCHA_KEY') }}">
-                                </div>
-                            </div>
+{{--                            <div class="form-group">--}}
+{{--                                <script src="https://www.google.com/recaptcha/api.js"--}}
+{{--                                        async defer></script>--}}
+{{--                                <div class="g-recaptcha" style="text-align: center;" id="feedback-recaptcha"--}}
+{{--                                     data-sitekey="{{ env('GOOGLE_RECAPTCHA_KEY') }}">--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
 
                             <div class="btn_form">
-                                <input type="submit" class="btnRegister5" value="تسجيل البيانات" />
+                                <button type="submit" class="btnRegister5" value="تسجيل البيانات">تسجيل البيانات </button>
                             </div>
                         </div>
                     </form>

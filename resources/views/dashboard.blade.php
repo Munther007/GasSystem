@@ -29,7 +29,7 @@
 
     <div class="menu-items">
         <ul class="nav-links">
-            <li><a href="/dashboard">
+            <li><a href="/">
                     <i class="uil uil-estate"></i>
                     <span class="link-name">الصفحة الرئيسية</span>
                 </a></li>
@@ -41,14 +41,27 @@
                     <i class="fas fa-user-cog"></i>
                     <span class="link-name">الصلاحيات</span>
                 </a></li>
-            <li><a href="#">
-                <i class="uil uil-comments"></i>
-                <span class="link-name">سجل النشاطات</span>
-            </a></li>
-{{--            <li><a href="#">--}}
-{{--                <i class="uil uil-share"></i>--}}
-{{--                <span class="link-name">Share</span>--}}
-{{--            </a></li>--}}
+{{--            @if (Auth::user()->role_name=='Administrator')--}}
+                <li>
+                    <ul>
+                        <a href="">
+                            <i class="fa-sharp fa-solid fa-chart-line"></i>
+                            <span class="link-name">سجل النشاطات</span>
+                        </a>
+                        <li class="submenu-item">
+                            <a href="{{ route('userManagement') }}">لوحة تحكم المستخدم</a>
+                        </li>
+                        <li class="submenu-item">
+                            <a href="{{ route('activity/log') }}">سجل نشاط المستخدم</a>
+                        </li>
+                        <li class="submenu-item">
+                            <a href="{{ route('activity/login/logout') }}">سجل النشاطات</a>
+                        </li>
+                    </ul>
+
+                </li>
+{{--            @endif--}}
+
             <li><a href="{{route('cars.index')}}">
                     <i class="uil uil-chart"></i>
                     <span class="link-name">جميع البطاقات</span>
@@ -68,17 +81,17 @@
         <ul class="logout-mode">
             <li><a href="#">
                     <i class="uil uil-signout"></i>
-                    <span class="link-name">
+                    <span class="link-name">تسجيل خروج
                         <!-- Authentication -->
-                         <form class="link-name" method="POST" action="{{ route('logout') }}">
-                          @csrf
-                           <x-jet-dropdown-link
-                               href="{{ route('logout') }}"
-                               onclick="event.preventDefault();
-                               this.closest('form').submit();" role="button">
-                            تسجيل خروج
-                            </x-jet-dropdown-link>
-                           </form>
+{{--                         <form class="link-name" method="POST" action="{{ route('logout') }}">--}}
+{{--                          @csrf--}}
+{{--                           <x-jet-dropdown-link--}}
+{{--                               href="{{ route('logout') }}"--}}
+{{--                               onclick="event.preventDefault();--}}
+{{--                               this.closest('form').submit();" role="button">--}}
+{{--                            تسجيل خروج--}}
+{{--                            </x-jet-dropdown-link>--}}
+{{--                           </form>--}}
                         </span>
                 </a></li>
 
@@ -95,6 +108,8 @@
         </ul>
     </div>
 </nav>
+
+@yield('content')
 
 <section class="dashboard" >
     <div class="top">

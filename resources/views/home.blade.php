@@ -12,8 +12,9 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"
     />
-<link rel="stylesheet" href="css/style-home.css">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+      <link rel="stylesheet" href="{{asset('css/stylehome.css')}}">
+      <link rel="stylesheet" href="../css/stylehome.css">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
 <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> -->
 <!-- jquery cdn link  -->
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
@@ -83,7 +84,7 @@
         <div id="menu" class="fas fa-bars"></div>
 
         <nav class="nav_container">
-            <a href="#home" class="nav_link">الصفحة الرئيسية</a>
+            <a href="" class="nav_link">الصفحة الرئيسية</a>
             <a href="#home" class="nav_link"> أستمارة تسجيل البطاقات</a>
             <a href="#scanner_id" class="nav_link">المحطات</a>
             <a href="#contact_wrapper" class="nav_link">أتصل بنا</a>
@@ -96,7 +97,6 @@
                     @endauth
             @endif
 
-            <a href="">تسجيل خروج</a>
 {{--                <!-- Authentication -->--}}
 {{--                <form method="POST" action="{{ route('logout') }}">--}}
 {{--                    @csrf--}}

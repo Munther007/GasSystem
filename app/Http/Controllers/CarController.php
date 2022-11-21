@@ -57,12 +57,13 @@ class CarController extends Controller
      *
      * @param Request $request
      * @return string
+     * @throws ValidationException
      */
     public function store(Request $request)
     {
-        $this -> validate($request, [
-            'g-recaptcha-response' =>
-                ['required', new Recaptcha()]]);
+//        $this -> validate($request, [
+//            'g-recaptcha-response' =>
+//                ['required', new Recaptcha()]]);
 
 //         Recaptcha passed, do what ever you need
 
@@ -88,25 +89,45 @@ class CarController extends Controller
             'random_code' => $random_code
         ]);
 
-        Cookie::queue(Cookie::make('id', $car->id, 60));
-        $content = Cookie::has('id');
-        $content = $request->cookie('id');
-        $no = 1;
-        $pageId = $content + $no;
+//        Cookie::queue(Cookie::make('id', $car->id, 60));
+//        $content = Cookie::has('id');
+//        $content = $request->cookie('id');
+//        $no = 1;
+//        $pageId = $content + $no;
 
-        return Redirect::to('cars/' . $pageId);
+//        return Redirect::to('cars/' . $pageId);
+        $id = $car->id ;
+        Cookie::queue(Cookie::make('id', $id, 60));
+        $content = Cookie::has('id');
+
+        return Redirect::route('show2' , compact('id'));
+//        return Redirect::to('cars/'. $id);
     }
 
     /**
      * Display the specified resource.
      *
      * @param $id
-     * @return Factory|View
+     * @return string
      */
     public function show($id)
     {
+
+
+        $content = Cookie::get('id');
+
+
+        // dd($content);
+//        if (Cookie::has('id')) {
+//            $car = Car::find($id);
+//            return view('cars.showID', compact('car'));
+//        } else {
+//            return "Try again and check the barcode ";
+//        }
+        Cookie::has('id');
         $car = Car::find($id);
-        return view('cars.info', compact('car'));
+        return view('cars.showID', compact('car'));
+
     }
 
     /**
@@ -114,40 +135,49 @@ class CarController extends Controller
      *
      * @param Car $car
      * @param $id
-     * @return Factory|View
+     * @return string
      */
     public function show2($id)
     {
-        $car = Car::find($id);
-        return view('cars.showID', compact('car'));
+        $content = Cookie::get('id');
+
+        if (Cookie::has('id'))
+         {
+             $car = Car::find($content);
+             return view('cars.info', compact('car'));
+        } else {
+            return "Try again and check the barcode " ;
+        }
+
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param Car $car
-     * @return Factory|View
+     * @param $id
+     * @return string
      */
-    public function update(Request $request, Car $car)
+    public function update(Request $request)
     {
-        $scan = $request->scan2;
-        $car = Car::find($request);
 
-//        $acive_state = $car['active_state'];
-        $random_code = $car['$random_code'];
+        Cookie::has('id');
+            $cookie = Cookie::get('id');
 
-        if ($scan == $random_code) {
-            $acive_state = true;
-
+            $car = Car::find($cookie);
             $car->active_state = true;
             $car->save();
+           return \redirect('scan');
 
-            return \redirect('cars');
-        } else {
-            return view('$car.error');
+
+//        $cookie = Cookie::get('id');
+//        $id = $cookie;
+//        $car = Car::find($id);
+//            $car->active_state = true;
+//            $car->save();
+//            return \redirect('scan');
         }
-    }
+
 
     public function getCookies()
     {
@@ -164,20 +194,29 @@ class CarController extends Controller
 
     public function checkBarcode(Request $request)
     {
-
-
-//        //main statements
-//        $random_code = $barcode;
-//        $car = Car::find($random_code);
-//        $id = DB::select('select random_code from cars where random_code = ?' , [$barcode]);
-
         $barcode = $request->barcode ;
         $array = DB::select('select id from cars where random_code = ?' , [$barcode]);
-       $id = $array[0]->id;
-        $car = Car::find($id);
+        $id = $array[0]->id;
+        Cookie::queue($cookie =  Cookie::make('id', $id, 1));
+        if (Cookie::has('id')){
+            $id = Cookie::get('id');
+            $car = Car::find($id);
+        return redirect::to('cars/'. $id)->with(['car'=> $car , 'id' => $id]);
+        }
+        else {
+            return \view('scan');
+        }
+//
+//        $barcode = $request->barcode ;
+//        $array = DB::select('select id from cars where random_code = ?' , [$barcode]);
+//        $id = $array[0]->id;
+//        $car = Car::find($id);
+//        return view('cars/showID' , compact('car'));
 
-        return view('cars/showID' , compact('car'));
+
+
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -189,7 +228,7 @@ class CarController extends Controller
     {
         try {
             $cars= Car::all();
-            $car = Car::findOrFail($id);
+            $car = Car::find($id);
             $car->delete();
             return redirect()->route('scan')->with('delete' , 'تم حذف معلومات الكتاب بنجاح');
         } catch (\Exception $e) {
@@ -209,24 +248,24 @@ class CarController extends Controller
 
     public function exportpdf()
     {
-//        $filename = 'hello_world.pdf';
-//
-//        $data = [
-//            'title' => 'Hello world!'
-//        ];
-//
-//        $view = \View::make('pdf.sample', $data);
-//        $html = $view->render();
-//
-//        $pdf = new TCPDF;
-//
-//        $pdf::SetTitle('Hello World');
-//        $pdf::AddPage();
-//        $pdf::writeHTML($html, true, false, true, false, '');
-//
-//        $pdf::Output(public_path($filename), 'F');
-//
-//        return response()->download(public_path($filename));
+        $filename = 'hello_world.pdf';
+
+        $data = [
+            'title' => 'Hello world!'
+        ];
+
+        $view = \View::make('pdf.sample', $data);
+        $html = $view->render();
+
+        $pdf = new TCPDF;
+
+        $pdf::SetTitle('Hello World');
+        $pdf::AddPage();
+        $pdf::writeHTML($html, true, false, true, false, '');
+
+        $pdf::Output(public_path($filename), 'F');
+
+        return response()->download(public_path($filename));
     }
 
 

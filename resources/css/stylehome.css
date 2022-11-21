@@ -1171,8 +1171,53 @@ justify-content: center;
       padding: 15px;
       min-width: 220px;
       font-size: 20px;
-
     }
+.section_wrap1 .fill_app:hover {
+    z-index: 1;
+    border-color: transparent;
+    background: linear-gradient(
+        90deg,
+        #337ab7,
+        #00a19d,
+        #0c87b7,
+        #3379b728
+    );
+    background-size: 400%;
+    box-shadow: 0 0 15px rgb(2, 4, 24);
+    animation: glow 12s linear forwards;
+}
+
+@keyframes glow {
+
+    from {
+        background-position: 0%;
+    }
+
+    to {
+        background-position: 400%;
+    }
+
+}
+
+.section_wrap1 .fill_app::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    bottom: -1px;
+    left: -1px;
+    background: inherit;
+    filter: blur(36px);
+    opacity: 0;
+    transition: .4s ease-out;
+}
+
+.section_wrap1 .fill_app:hover::before {
+    opacity: 1;
+    z-index: -1;
+}
+
+
 /*
     .app_container{
       width: 50%;
