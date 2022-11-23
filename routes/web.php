@@ -39,6 +39,8 @@ Route::get('activity/login/logout', [UserManagementController::class, 'activityL
 //Route::get('/prnpriview3',[PrintController::class , 'prnpriview3']);
 //Route::get('/generate-pdf', [CarController::class, 'generatePDF']);
 
+Route::get('/generate-pdf', [CarController::class, 'export2']);
+
 Route::get('/getcookies' , [CarController::class , 'getCookies']);
 Route::get('/scan', function () {
     return view('scan');})->name('scan');

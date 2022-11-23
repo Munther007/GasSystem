@@ -7,7 +7,7 @@
     font-family: 'Tajawal', sans-serif;
 }
 body{
-    min-height: 100vh; 
+    min-height: 100vh;
 }
 .container_header {
     display: flex;
@@ -20,9 +20,9 @@ body{
     padding: 20px;
 }
 .barcode {
-    
-  width: 15%;
-   background-color: #ffb9cf;
+
+    width: 15%;
+    background-color: #ffb9cf;
     /* width: calc(100% / 4 - 16px); */
     background: #fff;
     transition: var(--tran-05);
@@ -36,7 +36,7 @@ body{
     width: 10%;
     /* width: calc(100% / 4 - 16px); */
     /* padding: 15px 20px; */
- 
+
     /* box-shadow: 4px 4px 16px rgb(0 0 0 / 10%); */
 }
 .logo_box .logo {
@@ -54,9 +54,9 @@ body{
     /* box-shadow: 4px 4px 16px rgb(0 0 0 / 10%); */
 }
 #text1, #text2, #text3 {
-font-size: 1em;
-font-weight: 900;
-color: rgb(41, 39, 39);
+    font-size: 1em;
+    font-weight: 900;
+    color: rgb(41, 39, 39);
 }
 table, th, td {
     border: 1px solid rgb(189, 187, 187);
@@ -64,65 +64,66 @@ table, th, td {
     padding: .8rem;
     font-size: 1.3rem;
     color: rgb(0, 0, 0);
-  }
-  table{
-      width: 70%;
-      margin-top: 1rem;
-      
-  }
-  #title_header {
-      font-size: 1.5rem;
-  }
-  .info {
-      /* width: 25%; */
-  }
-  .data {
-      /* width: 40%; */
-  }
-  .wrap_table {
-   
+}
+table{
+    width: 70%;
+    margin-top: 1rem;
+
+}
+#title_header {
+    font-size: 1.5rem;
+}
+.info {
+    /* width: 25%; */
+}
+.data {
+    /* width: 40%; */
+}
+.wrap_table {
+
     /* width: 60%; */
     /* margin: 2rem auto; */
     /* border: 1px solid black; */
     /* padding: 20px; */
-  }
-  .container_table {
-   
+}
+.container_table {
+
     /* width: 100%; */
     /* margin: 0% 10% 0% 0%; */
     margin-right: 20%;
     margin-top: 6%;
     /* border: 1px solid black;
     padding: 20px; */
-  }
+}
 
-  .wrapper_notes {
+.wrapper_notes {
     margin-right: 20%;
     margin-top: 6%;
     font-size: 1.2rem;
-    
-  }
-  .notes_print{
-      padding: 12px;
-      font-size: 1.2rem;
-      margin-top: 2rem;
-  }
-  .notes_print li{
-      padding: 10px;
-     
-  }
-  #notes_title {
-      margin-bottom: 1rem;
-  }
-  .footer_container {
+
+}
+.notes_print{
+    padding: 12px;
+    font-size: 1.2rem;
+    margin-top: 2rem;
+}
+.notes_print li{
+    padding: 10px;
+
+}
+#notes_title {
+    margin-bottom: 1rem;
+}
+.footer_container {
     display: flex;
     justify-content: space-evenly;
-    margin: 5% 5% 10% 5%;
+    margin: 1% 1% 1% 1%;
     font-size: 1rem;
     font-weight: 500;
 }
-  .footer_container p{
-   
+
+.footer_container p{
+
     font-size: 1.2rem;
     font-weight: 900;
 }

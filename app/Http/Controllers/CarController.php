@@ -248,52 +248,17 @@ class CarController extends Controller
 
     public function exportpdf()
     {
-        $filename = 'hello_world.pdf';
-
-        $data = [
-            'title' => 'Hello world!'
-        ];
-
-        $view = \View::make('pdf.sample', $data);
-        $html = $view->render();
-
-        $pdf = new TCPDF;
-
-        $pdf::SetTitle('Hello World');
-        $pdf::AddPage();
-        $pdf::writeHTML($html, true, false, true, false, '');
-
-        $pdf::Output(public_path($filename), 'F');
-
-        return response()->download(public_path($filename));
-    }
-
-
-
-//    public function generatePDF()
-//    {
-//    }
-
-//        // This will convert url string to array with '/' declimiter
-//        $url = explode('/', url()->current()); // something like [..., '127.0.0.1:8000', 'pengajuan', '3']
-//        $id = end($url); // result is 3
+//        $filename = 'hello_world.pdf';
 //
-//// Get Specific Submission detail with "where" function
-//        $car = Car::where('id', $id)->first();
+//        $data = [
+//            'title' => 'Hello world!'
+//        ];
+////-------------------------
+//        $content = Cookie::get('id');
 //
-//// Rest is just same
-//        $pdf = PDF::loadview('cars.info', ['car' => $car]);
-//        return $pdf->stream();
-
-//        if (Cookie::has('id')) {
-//            $id = Cookie::get('id');
-//
-//            $car = Car::find($id);
-//            $filename = 'hello_world.pdf';
-//            $data = [
-//                'title' => 'Hello world!'
-//            ];
-////            dd($id);
+//        if (Cookie::has('id'))
+//        {
+//            $car = Car::find($content);
 //            $view = \View::make('pdf.sample', $data);
 //            $html = $view->render();
 //
@@ -305,29 +270,11 @@ class CarController extends Controller
 //
 //            $pdf::Output(public_path($filename), 'F');
 //
-//
-//            return response()->download(public_path($filename));
-
+//            return response()->with(['car' => $car])->download(public_path($filename));
 //        } else {
-//            echo 'no cookies' ;
+//            return "Try again and check the barcode " ;
 //        }
-//
-//        if (Cookie::has('id')){
-//            $id = Cookie::get('id');
-//            $car = Car::find($id);
-//            $pdf = PDF::loadView('cars.info', compact('car'));
-//            return $pdf->download('الأستمارة الخاصة بك.pdf');
-//        } else {
-//            echo 'no cookies' ;
-//        }
-//        return Redirect::to('cars/' );
-//        $car = Car::find($random_code);
-//}
+    }
 
-    /**
-     * @param $request
-     * @param $random_code
-     * @return Factory|View
-     */
 
 }

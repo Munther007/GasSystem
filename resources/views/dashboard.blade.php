@@ -83,15 +83,15 @@
                     <i class="uil uil-signout"></i>
                     <span class="link-name">تسجيل خروج
                         <!-- Authentication -->
-{{--                         <form class="link-name" method="POST" action="{{ route('logout') }}">--}}
-{{--                          @csrf--}}
-{{--                           <x-jet-dropdown-link--}}
-{{--                               href="{{ route('logout') }}"--}}
-{{--                               onclick="event.preventDefault();--}}
-{{--                               this.closest('form').submit();" role="button">--}}
-{{--                            تسجيل خروج--}}
-{{--                            </x-jet-dropdown-link>--}}
-{{--                           </form>--}}
+                         <form class="link-name" method="POST" action="{{ route('logout') }}">
+                          @csrf
+                           <x-jet-dropdown-link
+                               href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                               this.closest('form').submit();" role="button">
+                            تسجيل خروج
+                            </x-jet-dropdown-link>
+                           </form>
                         </span>
                 </a></li>
 
