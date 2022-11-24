@@ -19,6 +19,7 @@
         "livewire/livewire": "^2.5",
         "maatwebsite/excel": "^3.1",
         "milon/barcode": "^9.0",
+        "monolog/monolog": "^2.8",
         "niklasravnsborg/laravel-pdf": "^4.1",
         "psr/simple-cache": "2.0",
         "spatie/laravel-activitylog": "^4.7",

@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>بيانات المواطن</title>
     <link rel="stylesheet" href="{{asset('css/style444.css')}}">
     <script src="https://unpkg.com/pdf-lib"></script>
 </head>
@@ -12,13 +11,13 @@
 <div class="top">
     <div class="container_header">
         <div class="barcode">
-            <img src="{{DNS2D::getBarcodePNGPath($car->random_code, 'PDF417')}}" style="height: 100px; width: 170px" alt="">
+            <img src="{{DNS2D::getBarcodePNGPath($car->random_code, 'PDF417')}}" class="img_barcode" alt="">
         </div>
-        <space></space>
+
         <div class="logo_box">
             <img src="{{asset('logo.png')}}" alt="" class="logo">
         </div>
-        <space></space>
+
         <div class="text_box">
             <p id="text1">وزارة النفــط</p>
             <p id="text2">هيـــأة تـــوزيع بغـــداد </p>
@@ -77,7 +76,7 @@
     <div class="wrapper_notes"  dir="rtl">
         <h3 id="notes_title">ملاحظات</h3>
         <p>يرجى طباعة الاستمارة و مراجعة الدائرة المعنية وأستصحاب المستمسكات الخاصة بك</p>
-        <ul class="notes_print">
+        <ul class="notes_print" dir="rtl">
             <h3>المستمسكات المطلوبة </h3>
 
             <li>الهوية او البطاقة الموحدة</li>
@@ -92,21 +91,18 @@
         <p>توقــيع المدقــق </p>
     </div>
 
-    <div style="text-align: center;">
-        <br><br>
-{{--        <a href="{{ url('/prnpriview3') }}" class="btnprn btn">طباعة</a>--}}
-        <button onclick="display()">Print</button>
-
+    <div class="print_div">
+        <button class="btnprn" onclick="display()">Print</button>
     </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
     var element = document.getElementById("element")
     html2pdf(element , {
-        margin: 10 ,
+        margin: 0 ,
         fileName: 'info' ,
         image: { type:'png' ,quality: 0.98} ,
-        html2canvas: { scale:2 , logging: true , dpi: 192 , letterRendering: true} ,
+        html2canvas: { scale:1 , logging: true , dpi: 192 , letterRendering: true} ,
         jsPDF: { unit: 'mm' , format: 'a4' , orientation: 'portrait' }
     });
 </script>

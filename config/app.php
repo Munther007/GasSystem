@@ -182,6 +182,7 @@ return [
         Milon\Barcode\BarcodeServiceProvider::class,
         Arcanedev\LogViewer\LogViewerServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        Arcanedev\LogViewer\LogViewerServiceProvider::class,
 
     ],
 

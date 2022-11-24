@@ -6,6 +6,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserManagementController;
 use Illuminate\Support\Facades\Route;
 
+use Spatie\Activitylog\Models\Activity ;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,6 +18,11 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/activity', function () {
+    return Activity::all();
+    return view('test');
+});
 
 Route::get('/', function () {
     return view('home');

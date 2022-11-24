@@ -115,7 +115,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <input type="file" class="form-control" name="id_card_photo" id="id_card_photo" placeholder="صورة الهوية او البطاقة الموحدة *" value="{{old("id_card_photo")}}" />
+                                <input type="file" class="form-control id_card_photo" name="id_card_photo" id="id_card_photo" placeholder="صورة الهوية او البطاقة الموحدة *" value="{{old("id_card_photo")}}" />
                                 @error('id_card_photo')
                                 <div class="form-error">
                                     {{$message}}
@@ -248,5 +248,18 @@
 </div>
 
 </div>
+
+<script>
+    $("#files").change(function() {
+        filename = this.files[0].name;
+        console.log(filename);
+    });
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<div>
+    <label for="files" class="btn">Select Image</label>
+    <input id="files" style="visibility:hidden;" type="file">
+</div>
+
 </body>
 </html>

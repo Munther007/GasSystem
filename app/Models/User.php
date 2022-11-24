@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Cache;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Activitylog\LogOptions;
 
 class User extends Authenticatable
 {
@@ -20,12 +22,18 @@ class User extends Authenticatable
     use Notifiable;
     use TwoFactorAuthenticatable;
     use SoftDeletes;
+    use LogsActivity;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var string[]
      */
+
+    protected static $logsAttributes = ['name' , 'email'];
+
+    protected static $recordEvents = ['created' , 'updated'];
+
     protected $fillable = [
         'name',
         'email',
@@ -110,7 +118,13 @@ class User extends Authenticatable
         return Cache::has('user-is-online' .$this->id);
     }
 
+    public function getActivitylogOptions():  LogOptions
+    {
+        return LogOptions::defaults();
+    }
 
-
-
+    public function activityLog()
+    {
+        return $this->hasMany('App\ActivityLog');
+    }
 }
