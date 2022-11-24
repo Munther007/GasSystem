@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="{{asset('css/style444.css')}}">
     <script src="https://unpkg.com/pdf-lib"></script>
 </head>
-test
 <body id="element">
 <div class="top">
     <div class="container_header">

@@ -33,6 +33,7 @@
                     <i class="uil uil-estate"></i>
                     <span class="link-name">الصفحة الرئيسية</span>
                 </a></li>
+            @if (Auth::user()->role_id==1)
             <li><a href="/admin/user">
                     <i class="uil uil-files-landscapes"></i>
                     <span class="link-name">المستخدمين</span>
@@ -41,26 +42,25 @@
                     <i class="fas fa-user-cog"></i>
                     <span class="link-name">الصلاحيات</span>
                 </a></li>
-{{--            @if (Auth::user()->role_name=='Administrator')--}}
                 <li>
                     <ul>
-                        <a href="">
+                        <a href="/log-viewer">
                             <i class="fa-sharp fa-solid fa-chart-line"></i>
                             <span class="link-name">سجل النشاطات</span>
                         </a>
-                        <li class="submenu-item">
-                            <a href="{{ route('userManagement') }}">لوحة تحكم المستخدم</a>
-                        </li>
-                        <li class="submenu-item">
-                            <a href="{{ route('activity/log') }}">سجل نشاط المستخدم</a>
-                        </li>
-                        <li class="submenu-item">
-                            <a href="{{ route('activity/login/logout') }}">سجل النشاطات</a>
-                        </li>
+{{--                        <li class="submenu-item">--}}
+{{--                            <a href="{{ route('userManagement') }}">لوحة تحكم المستخدم</a>--}}
+{{--                        </li>--}}
+{{--                        <li class="submenu-item">--}}
+{{--                            <a href="{{ route('activity/log') }}">سجل نشاط المستخدم</a>--}}
+{{--                        </li>--}}
+{{--                        <li class="submenu-item">--}}
+{{--                            <a href="{{ route('activity/login/logout') }}">سجل النشاطات</a>--}}
+{{--                        </li>--}}
                     </ul>
 
                 </li>
-{{--            @endif--}}
+            @endif
 
             <li><a href="{{route('cars.index')}}">
                     <i class="uil uil-chart"></i>

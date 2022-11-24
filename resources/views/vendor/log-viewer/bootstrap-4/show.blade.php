@@ -21,7 +21,9 @@
                 <div class="list-group list-group-flush log-menu">
                     @foreach($log->menu() as $levelKey => $item)
                         @if ($item['count'] === 0)
+
                             <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center disabled">
+{{--                                <span class="level-name">{!! $item['icon'] !!} {{\App\Models\Car::auth()->name()}}</span>--}}
                                 <span class="level-name">{!! $item['icon'] !!} {{ $item['name'] }}</span>
                                 <span class="badge empty">{{ $item['count'] }}</span>
                             </a>
